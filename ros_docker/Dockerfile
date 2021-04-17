@@ -36,4 +36,4 @@ RUN echo "root:123456"|chpasswd
 
 ENTRYPOINT ["/entrypoint.sh"]
 # launch ros package
-CMD ["roslaunch", "roscpp_tutorials", "talker_listener.launch"]
+CMD ["roslaunch", "roscpp_tutorials", "talker_listener.launch", "zsh"]

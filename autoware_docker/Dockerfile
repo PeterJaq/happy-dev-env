@@ -38,3 +38,5 @@ RUN chmod +x /entrypoint.sh
 RUN echo "root:123456"|chpasswd
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["zsh"]
