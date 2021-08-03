@@ -1,7 +1,8 @@
 # pytorch 1.8
 # FROM pytorch/pytorch:1.8.0-cuda11.1-cudnn8-devel
 # pytorch 1.6
-FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-devel
+#FROM pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel
+FROM 199704100728/yolox:1.00
 
 RUN apt-get update && apt-get install -y \
     openssh-server \
@@ -11,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # install oh-my-zsh with awesome plugin
-RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
+RUN yes | sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
     -t https://github.com/denysdovhan/spaceship-prompt \
     -p git \
     -p ssh-agent \
