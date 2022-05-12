@@ -1,4 +1,5 @@
 FROM nvcr.io/nvidia/tensorrt:21.07-py3
+ENV TZ=Asia/Shanghai
 
 RUN apt-get update && apt-get install -y \
     openssh-server \

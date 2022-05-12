@@ -1,5 +1,7 @@
 # autoware without cuda
 FROM autoware/autoware:1.14.0-melodic
+ENV TZ=Asia/Shanghai
+
 # autoware with cuda
 # FROM autoware/autoware:1.14.0-melodic-cuda
 
