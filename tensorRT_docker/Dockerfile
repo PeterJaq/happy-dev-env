@@ -1,5 +1,6 @@
 FROM nvcr.io/nvidia/tensorrt:21.07-py3
 ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get install -y \
     openssh-server \
@@ -15,6 +16,9 @@ RUN apt-get update && apt-get install -y \
     g++ \
     unzip \
     && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y pcl-tools libpcl-dev && rm -rf /var/lib/apt/lists/*
+
 
 # install oh-my-zsh with awesome plugin
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
@@ -41,9 +45,7 @@ RUN git clone https://github.com/protocolbuffers/protobuf.git \
     && git submodule update --init --recursive \
     && ./autogen.sh \
     && ./configure \
-    && mkdir build \
-    && cd build \
-    && make -j \
+    && make -j4 \
     && make install \
     && ldconfig
 
