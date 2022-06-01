@@ -1,8 +1,8 @@
-# pytorch 1.8
-# FROM pytorch/pytorch:1.8.0-cuda11.1-cudnn8-devel
+pytorch 1.8
+FROM pytorch/pytorch:1.8.0-cuda11.1-cudnn8-devel
 # pytorch 1.6
 #FROM pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel
-FROM 199704100728/yolox:1.00
+# FROM 199704100728/yolox:1.00
 ENV TZ=Asia/Shanghai
 
 RUN apt-get update && apt-get install -y \

@@ -1,6 +1,18 @@
 FROM nvcr.io/nvidia/tensorrt:21.08-py3
+
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# RUN apt-get update && apt-get install -y \
+#     openssh-server \
+#     wget \
+#     vim \
+#     ros-melodic-ros-tutorials \
+#     ros-melodic-common-tutorials \
+#     openssh-server \
+#     && rm -rf /var/lib/apt/lists/*
+
+
 
 RUN apt-get update && apt-get install -y \
     openssh-server \
@@ -22,6 +34,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y pcl-tools libpcl-dev && rm -rf /var/lib/apt/lists/*
 
+RUN wget --no-check-certificate https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -O - | apt-key add -
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B9316A7BC7917B12
+RUN apt-get update && apt search ros | grep ros && apt-get install -y ros-noetic-desktop-full && rm -rf /var/lib/apt/lists/*
 
 # install oh-my-zsh with awesome plugin
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
